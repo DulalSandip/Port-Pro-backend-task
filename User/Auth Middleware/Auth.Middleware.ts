@@ -1,14 +1,14 @@
-import jwt, { VerifyErrors } from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
+import jwt, { VerifyErrors } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import Token from "../Interface/Token.Interface";
 
 const jwt_token_key = process.env.JWT_TOKEN_KEY;
+// const jwt_token_key = "portpro";
 
-console.log(jwt_token_key);
+console.log(jwt_token_key, "tokens");
 //? Generate this token during registration process
-const createJwtToken = (_id: any, role: string) => {
+const createJwtToken = (_id: any, role: any) => {
   // Json web token generate
 
   return jwt.sign(
@@ -30,8 +30,6 @@ const requireSignin = (
   res: Response | any,
   next: NextFunction | any
 ) => {
-  console.log(jwt_token_key);
-
   try {
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(" ")[1];
@@ -57,7 +55,7 @@ const requireSignin = (
 const userMiddleware = (
   req: Request | any,
   res: Response | any,
-  next: NextFunction
+  next: NextFunction | any
 ) => {
   if (req.user.role !== "user") {
     return res.status(401).json({

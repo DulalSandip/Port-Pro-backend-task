@@ -7,6 +7,6 @@ declare interface ProductsInterface {
   price: number;
   discountPrice: number;
   finalPrice: number;
-  createdBy: string;
+  createdBy?: string;
 }
 export default ProductsInterface;

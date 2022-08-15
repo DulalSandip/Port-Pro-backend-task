@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import ProductModel from "../Models/Products.Models";
 import ProductsInterface from "../Interface/Products.Interface";
 
-const createProduct = async (req: Request | any, res: Response) => {
+const createProduct = async (req: Request | any, res: Response | any) => {
   try {
     const { _id, name, description, price, discountPrice } = req.body;
     const bodyValue: ProductsInterface = {
@@ -38,9 +38,12 @@ const createProduct = async (req: Request | any, res: Response) => {
 };
 
 // user can see their uploaded products with token set in the authorization
-const getAuthorizedProduct = async (req: Request | any, res: Response | any) => {
+const getAuthorizedProduct = async (
+  req: Request | any,
+  res: Response | any
+) => {
   try {
-    const product = await ProductModel.findOne({
+    const product = await ProductModel.find({
       createdBy: req.user._id,
     });
 

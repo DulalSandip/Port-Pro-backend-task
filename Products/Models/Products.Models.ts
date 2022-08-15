@@ -9,9 +9,7 @@ export interface ProductsInterface extends Document {
   price: number;
   discountPrice: number;
   finalPrice: number;
-  //   createdBy?: PopulatedDoc< User & Document<Types.ObjectId>>;
-  createdBy?: Schema.Types.ObjectId;
-
+  createdBy?: string;
   createdAt: string;
   updatedAt: string;
 }
